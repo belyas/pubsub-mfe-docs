@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1000" height="420" viewBox="0 0 1000 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">PubSub MFE message flow diagram</title>
+  <desc id="desc">Diagram showing a publisher sending a message to a PubSub bus which forwards it to multiple subscribers.</desc>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569" />
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000" flood-opacity="0.12" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="transparent" />
+
+  <!-- Publisher box -->
+  <g transform="translate(60,120)">
+    <rect x="0" y="0" rx="10" ry="10" width="180" height="80" fill="#6366F1" />
+    <text x="90" y="30" text-anchor="middle" font-family="Inter, Roboto, Arial" font-size="16" fill="#fff" font-weight="700">Publisher</text>
+    <text x="90" y="52" text-anchor="middle" font-family="Inter, Roboto, Arial" font-size="12" fill="#EEF2FF">bus.publish('cart.item.add', data)</text>
+  </g>
+
+  <!-- Bus circle -->
+  <g transform="translate(330,90)">
+    <rect x="0" y="0" width="260" height="140" rx="18" ry="18" fill="#0EA5A4" filter="url(#shadow)" />
+    <text x="130" y="40" text-anchor="middle" font-family="Inter, Roboto, Arial" font-size="18" fill="#022C22" font-weight="800">PubSub Bus</text>
+    <text x="130" y="72" text-anchor="middle" font-family="Inter, Roboto, Arial" font-size="12" fill="#083237">routes messages</text>
+    <text x="130" y="92" text-anchor="middle" font-family="Inter, Roboto, Arial" font-size="12" fill="#083237">applies patterns</text>
+    <text x="130" y="112" text-anchor="middle" font-family="Inter, Roboto, Arial" font-size="12" fill="#083237">validates schema</text>
+  </g>
+
+  <!-- Subscribers group -->
+  <g id="subscribers" transform="translate(670,40)">
+    <!-- Subscriber A -->
+    <rect x="0" y="0" rx="8" ry="8" width="220" height="68" fill="#F97316" />
+    <text x="110" y="24" text-anchor="middle" font-family="Inter, Roboto, Arial" font-size="14" fill="#FFF" font-weight="700">Subscriber A</text>
+    <text x="110" y="44" text-anchor="middle" font-family="Inter, Roboto, Arial" font-size="12" fill="#FFF">cart.item.add → update UI</text>
+
+    <!-- Subscriber B -->
+    <rect x="0" y="88" rx="8" ry="8" width="220" height="68" fill="#10B981" />
+    <text x="110" y="112" text-anchor="middle" font-family="Inter, Roboto, Arial" font-size="14" fill="#fff" font-weight="700">Subscriber B</text>
+    <text x="110" y="132" text-anchor="middle" font-family="Inter, Roboto, Arial" font-size="12" fill="#fff">cart.item.add → analytics</text>
+
+    <!-- Subscriber C -->
+    <rect x="0" y="176" rx="8" ry="8" width="220" height="68" fill="#06B6D4" />
+    <text x="110" y="200" text-anchor="middle" font-family="Inter, Roboto, Arial" font-size="14" fill="#033649" font-weight="700">Subscriber C</text>
+    <text x="110" y="220" text-anchor="middle" font-family="Inter, Roboto, Arial" font-size="12" fill="#033649">cart.item.add → persist history</text>
+  </g>
+
+  <!-- Arrows: Publisher -> Bus -->
+  <g stroke="#475569" stroke-width="3" fill="none" stroke-linecap="round">
+    <path d="M 240 160 L 320 160" marker-end="url(#arrow)" />
+  </g>
+
+  <!-- Arrow label -->
+  <text x="280" y="150" font-family="Inter, Roboto, Arial" font-size="12" fill="#475569" text-anchor="middle">publish(message)</text>
+
+  <!-- Arrows: Bus -> Subscribers (curved) -->
+  <g stroke="#475569" stroke-width="3" fill="none" stroke-linecap="round">
+    <path d="M 590 120 C 630 120 650 120 670 120" marker-end="url(#arrow)" />
+    <path d="M 590 180 C 630 180 650 180 670 180" marker-end="url(#arrow)" />
+    <path d="M 590 240 C 630 240 650 240 670 240" marker-end="url(#arrow)" />
+  </g>
+
+  <!-- Bus internal visual (small icons) -->
+  <g transform="translate(410,140)">
+    <rect x="-18" y="-28" width="36" height="36" rx="6" fill="#fff" opacity="0.12" />
+  </g>
+
+  <!-- Footer explanatory text -->
+  <text x="500" y="380" text-anchor="middle" font-family="Inter, Roboto, Arial" font-size="12" fill="#475569">Publisher sends a message to the Bus → Bus routes to matching subscribers (supports wildcards, validation, deduplication, batching)</text>
+
+</svg>

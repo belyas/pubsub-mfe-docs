@@ -1,0 +1,155 @@
+/**
+ * Custom CSS for PubSub MFE Documentation
+ * Enhances the default VitePress theme
+ */
+
+:root {
+  /* Brand colors */
+  --vp-c-brand: #646cff;
+  --vp-c-brand-light: #747bff;
+  --vp-c-brand-dark: #535bf2;
+  --vp-c-brand-darker: #454ce1;
+  
+  /* Custom accent */
+  --vp-c-accent: #7c3aed;
+}
+
+/* Custom container styles */
+.custom-block.tip {
+  border-color: var(--vp-c-brand);
+}
+
+.custom-block.warning {
+  border-color: #f59e0b;
+}
+
+.custom-block.danger {
+  border-color: #ef4444;
+}
+
+.custom-block.info {
+  border-color: #3b82f6;
+}
+
+/* Enhance code blocks */
+div[class*='language-'] {
+  border-radius: 8px;
+  margin: 16px 0;
+}
+
+/* Improve table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+}
+
+table th {
+  background-color: var(--vp-c-bg-soft);
+  font-weight: 600;
+}
+
+table td,
+table th {
+  border: 1px solid var(--vp-c-divider);
+  padding: 12px 16px;
+}
+
+/* Image placeholder styling */
+.custom-block.info img {
+  border: 2px dashed var(--vp-c-divider);
+  padding: 16px;
+  background: var(--vp-c-bg-soft);
+}
+
+/* Hero section enhancements */
+.VPHero .name {
+  background: linear-gradient(120deg, var(--vp-c-brand) 30%, var(--vp-c-accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Sidebar enhancements */
+.VPSidebar {
+  scrollbar-width: thin;
+}
+
+/* Feature grid improvements */
+.VPFeature {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.VPFeature:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* Code group tabs */
+.vp-code-group .tabs {
+  border-radius: 8px 8px 0 0;
+}
+
+/* Link enhancements */
+.vp-doc a {
+  font-weight: 500;
+}
+
+/* Improve heading anchors */
+.header-anchor {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+h1:hover .header-anchor,
+h2:hover .header-anchor,
+h3:hover .header-anchor,
+h4:hover .header-anchor {
+  opacity: 1;
+}
+
+/* Custom spacing for sections */
+.vp-doc h2 {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--vp-c-divider);
+}
+
+.vp-doc h2:first-child {
+  margin-top: 0;
+  border-top: none;
+  padding-top: 0;
+}
+
+/* API reference table enhancements */
+.vp-doc table code {
+  font-size: 0.9em;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background-color: var(--vp-c-bg-mute);
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+  table {
+    font-size: 14px;
+  }
+  
+  table td,
+  table th {
+    padding: 8px 12px;
+  }
+}
+
+/* Print styles */
+@media print {
+  .VPNav,
+  .VPSidebar,
+  .VPFooter {
+    display: none;
+  }
+  
+  .VPContent {
+    padding: 0;
+  }
+}

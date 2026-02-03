@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+pnpm-lock.yaml
+
+# Build output
+.vitepress/dist
+.vitepress/cache
+
+# Local env files
+.env.local
+.env.*.local
+
+# Editor directories
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea
+.DS_Store
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Temporary files
+.temp
+.cache
