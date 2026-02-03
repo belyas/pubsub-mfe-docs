@@ -321,6 +321,6 @@ console.log(matchTopic(compileMatcher('cart.#'), 'user.login'));             // 
 ## Interactive Topic Pattern 
 
 <div style="text-align: center; margin: 40px 0;">
-  <iframe src="/pattern-playground/index.html" width="100%" height="420" style="border:1px solid #e5e7eb;border-radius:8px;" sandbox="allow-scripts allow-same-origin"></iframe>
+  <iframe src="/pubsub-mfe-docs/pattern-playground/index.html" width="100%" height="420" style="border:1px solid #e5e7eb;border-radius:8px;" sandbox="allow-scripts allow-same-origin"></iframe>
   <p style="color: #666; font-style: italic; margin-top: 12px;">Test your patterns interactively</p>
 </div>

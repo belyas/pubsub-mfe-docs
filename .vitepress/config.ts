@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: 'PubSub MFE',
   description: 'Browser-native Pub/Sub for microfrontends — zero dependencies, MQTT-style wildcards, optional schema validation',
-  base: '/',
+  base: '/pubsub-mfe-docs/',
 
   themeConfig: {
     logo: '/logo.svg',
