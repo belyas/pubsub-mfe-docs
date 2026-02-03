@@ -613,7 +613,7 @@ const transport = createAutoTransport({
 - **[Cross-Tab Guide](/guide/adapters/cross-tab)** - Complete guide
 - **[Pattern Examples](/examples/patterns)** - Advanced patterns
 - **[Cross-Tab API](/api/cross-tab)** - API reference
-- **[Performance](/docs/performance-benchmarks)** - Benchmarks
+- **[Performance](/guide/advanced/performance)** - Benchmarks
 
 ::: tip 💡 Best Practice
 Always enable batching and deduplication for high-frequency updates:
