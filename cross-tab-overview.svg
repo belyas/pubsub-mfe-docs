@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+  <title id="title">Cross-tab communication overview</title>
+  <desc id="desc">Diagram showing three browser tabs each with a PubSub bus instance, connected to a central cross-tab adapter/transport which relays messages from one tab to the others.</desc>
+
+  <defs>
+    <linearGradient id="g1" x1="0" x2="1">
+      <stop offset="0" stop-color="#6366F1" />
+      <stop offset="1" stop-color="#7C3AED" />
+    </linearGradient>
+    <linearGradient id="g2" x1="0" x2="1">
+      <stop offset="0" stop-color="#06b6d4" />
+      <stop offset="1" stop-color="#3b82f6" />
+    </linearGradient>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#7c3aed" />
+    </marker>
+    <style>
+      .tab { fill: #fff; stroke: #e6eef8; stroke-width: 2; rx: 6; }
+      .tab-title { font: 700 18px/1.1 Inter, Arial, sans-serif; fill: #0f172a; }
+      .bus { fill: url(#g1); stroke: rgba(0,0,0,0.06); stroke-width: 1; }
+      .adapter { fill: #0f172a; fill-opacity: 0.02; stroke: url(#g1); stroke-width: 8; }
+      .node-label { font: 600 16px/1 Inter, Arial, sans-serif; fill: #fff; }
+      .small { font: 600 14px/1 Inter, Arial, sans-serif; fill: #94a3b8; }
+      .small2 { font: 600 14px/1 Inter, Arial, sans-serif; fill: #ffffffff; }
+    </style>
+  </defs>
+
+  <!-- Background grid subtle -->
+  <rect width="1200" height="520" fill="transparent" />
+
+  <!-- Tab 1 -->
+  <g transform="translate(60,60)">
+    <rect class="tab" width="320" height="150" rx="8"/>
+    <text class="tab-title" x="20" y="36">Tab 1 — Publisher</text>
+    <!-- bus icon -->
+    <g transform="translate(20,56)">
+      <rect width="72" height="48" rx="6" class="bus" filter="url(#shadow)" />
+      <text x="36" y="30" text-anchor="middle" class="small2" fill="#fff">bus</text>
+    </g>
+    <g transform="translate(118,56)">
+      <rect x="0" y="0" width="180" height="48" rx="6" fill="#fff" stroke="#e6eef8"/>
+      <text x="12" y="30" class="small">Publisher component</text>
+    </g>
+  </g>
+
+  <!-- Tab 2 -->
+  <g transform="translate(60,260)">
+    <rect class="tab" width="320" height="150" rx="8"/>
+    <text class="tab-title" x="20" y="36">Tab 2 — Subscriber</text>
+    <g transform="translate(20,56)">
+      <rect width="72" height="48" rx="6" class="bus" filter="url(#shadow)" />
+      <text x="36" y="30" text-anchor="middle" class="small2" fill="#fff">bus</text>
+    </g>
+    <g transform="translate(118,56)">
+      <rect x="0" y="0" width="180" height="48" rx="6" fill="#fff" stroke="#e6eef8"/>
+      <text x="12" y="30" class="small">UI subscriber</text>
+    </g>
+  </g>
+
+  <!-- Tab 3 -->
+  <g transform="translate(860,160)">
+    <rect class="tab" width="320" height="150" rx="8"/>
+    <text class="tab-title" x="20" y="36">Tab 3 — Subscriber</text>
+    <g transform="translate(20,56)">
+      <rect width="72" height="48" rx="6" class="bus" filter="url(#shadow)" />
+      <text x="36" y="30" text-anchor="middle" class="small2" fill="#fff">bus</text>
+    </g>
+    <g transform="translate(118,56)">
+      <rect x="0" y="0" width="180" height="48" rx="6" fill="#fff" stroke="#e6eef8"/>
+      <text x="12" y="30" class="small">Background worker</text>
+    </g>
+  </g>
+
+  <!-- Adapter / Transport in center -->
+  <g transform="translate(420,120)">
+    <rect class="adapter" x="0" y="0" width="360" height="200" rx="12" filter="url(#shadow)"/>
+    <g transform="translate(20,20)">
+      <rect x="0" y="0" width="80" height="36" rx="6" fill="url(#g2)"/>
+      <text x="40" y="23" text-anchor="middle" class="small2" fill="#ffffffff">Transport</text>
+    </g>
+    <g transform="translate(120,20)">
+      <rect x="0" y="0" width="220" height="36" rx="6" fill="url(#g1)"/>
+      <text x="110" y="23" text-anchor="middle" style="font:700 14px/1 Inter,Arial" fill="#fff">Cross-Tab Adapter</text>
+    </g>
+
+    <!-- transport icons: BroadcastChannel, SharedWorker, Storage -->
+    <g transform="translate(36,90)">
+      <text class="node-label" fill="#fff">BroadcastChannel</text>
+      <rect x="0" y="5" width="115" height="2" rx="5" fill="#eef2ff" />
+    </g>
+    <g transform="translate(36,120)">
+      <text class="node-label">SharedWorker</text>
+      <rect x="0" y="5" width="92" height="2" rx="5" fill="#eef2ff" />
+    </g>
+    <g transform="translate(36,150)">
+      <text class="node-label">Storage (localStorage)</text>
+      <rect x="0" y="5" width="140" height="2" rx="5" fill="#eef2ff" />
+    </g>
+  </g>
+
+  <!-- Arrows: Tab1 -> Adapter -->
+  <g stroke="#7c3aed" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M380 200 C400 200 390 200 420 160" marker-end="url(#arrow)" />
+    <path d="M380 300 C390 290 420 260 420 260" marker-end="url(#arrow)" />
+    <path d="M858 200 C840 200 780 200 780 200" marker-end="url(#arrow)" />
+  </g>
+
+  <!-- Arrows: Adapter -> Tab2 & Tab3 (relay) -->
+  <g stroke="#06b6d4" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M420 200 C400 240 410 200 380 260" stroke="#06b6d4" marker-end="url(#arrow)" />
+    <path d="M780 290 C840 240 840 250 860 250" stroke="#06b6d4" marker-end="url(#arrow)" />
+  </g>
+
+  <!-- Annotations -->
+  <g>
+    <text x="340" y="30" class="node-label">Publisher publishes message to its local bus → adapter forwards to other tabs</text>
+    <text x="690" y="360" class="node-label" text-anchor="middle">Adapter relays message across transports (broadcast/sharedworker/storage)</text>
+  </g>
+
+</svg>

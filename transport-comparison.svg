@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="590" viewBox="0 0 1100 590" role="img" aria-labelledby="tTitle tDesc">
+  <title id="tTitle">Transport comparison table</title>
+  <desc id="tDesc">Comparison chart showing performance, browser support, setup complexity, persistence, and messages per second for BroadcastChannel, SharedWorker, and Storage transports with color-coded indicators.</desc>
+
+  <defs>
+    <linearGradient id="gPurple" x1="0" x2="1">
+      <stop offset="0" stop-color="#6366F1"/>
+      <stop offset="1" stop-color="#7C3AED"/>
+    </linearGradient>
+    <style>
+      .bg { fill: #ffffff }
+      .card { fill: #fff; stroke: #e6eef8; rx: 10 }
+      .colHeader { font: 700 14px/1.2 Inter, Arial, sans-serif; fill: #0f172a }
+      .metric { font: 600 13px/1.2 Inter, Arial, sans-serif; fill: #0f172a }
+      .cell { font: 500 13px/1.2 Inter, Arial, sans-serif; fill: #374151 }
+      .small { font: 400 12px/1 Inter, Arial, sans-serif; fill: #6b7280 }
+      .chip { rx:8; ry:8; stroke: rgba(0,0,0,0.06); stroke-width:0 }
+      .green { fill: #10b981 }
+      .yellow { fill: #f59e0b }
+      .red { fill: #ef4444 }
+      .blue { fill: #3b82f6 }
+      .dot { r:7 }
+    </style>
+  </defs>
+
+  <rect width="1100" height="540" fill="#f8fafc" />
+
+  <g transform="translate(40,28)">
+    <rect width="1020" height="480" class="card" rx="14" />
+
+    <!-- Title -->
+    <text x="28" y="36" font-family="Inter, Arial, sans-serif" font-weight="800" font-size="18" fill="#0f172a">Transport Comparison</text>
+    <text x="28" y="58" class="small">Performance, support, setup, persistence and throughput — at-a-glance guidance</text>
+
+    <!-- Column headers -->
+    <g transform="translate(28,90)">
+      <text x="0" y="0" class="metric">Metric</text>
+      <text x="220" y="0" class="colHeader">BroadcastChannel</text>
+      <text x="520" y="0" class="colHeader">SharedWorker</text>
+      <text x="820" y="0" class="colHeader">Storage (localStorage)</text>
+    </g>
+
+    <!-- Rows start at y = 120, spacing 62 -->
+    <!-- Row 1: Latency -->
+    <g transform="translate(28,120)">
+      <text x="0" y="18" class="metric">Latency</text>
+
+      <!-- BroadcastChannel: 1-5ms (green) -->
+      <rect x="200" y="2" width="240" height="32" class="chip" fill="#ecfeff" />
+      <text x="220" y="24" class="cell">~1-5ms</text>
+      <circle cx="280" cy="18" class="dot green" />
+
+      <!-- SharedWorker: 5-10ms (yellow) -->
+      <rect x="500" y="2" width="240" height="32" class="chip" fill="#fff7ed" />
+      <text x="520" y="24" class="cell">~5-10ms</text>
+      <circle cx="590" cy="18" class="dot yellow" />
+
+      <!-- Storage: 50-100ms (red) -->
+      <rect x="800" y="2" width="180" height="32" class="chip" fill="#fff1f2" />
+      <text x="820" y="24" class="cell">~50-100ms</text>
+      <circle cx="900" cy="18" class="dot red" />
+    </g>
+
+    <!-- Row 2: Browser Support -->
+    <g transform="translate(28,192)">
+      <text x="0" y="18" class="metric">Browser support</text>
+
+      <rect x="200" y="2" width="240" height="32" class="chip" fill="#f0f9ff" />
+      <text x="220" y="24" class="cell">Modern browsers</text>
+      <text x="220" y="40" class="cell">(Chrome/FF/Edge/Safari recent)</text>
+      <circle cx="340" cy="18" class="dot blue" />
+
+      <rect x="500" y="2" width="240" height="32" class="chip" fill="#ecfeff" />
+      <text x="520" y="24" class="cell">Good (may vary in Safari)</text>
+      <circle cx="680" cy="18" class="dot green" />
+
+      <rect x="800" y="2" width="180" height="32" class="chip" fill="#f8fafc" />
+      <text x="820" y="24" class="cell">Universal</text>
+      <text x="800" y="40" class="cell">(all browsers with localStorage)</text>
+      <circle cx="900" cy="18" class="dot green" />
+    </g>
+
+    <!-- Row 3: Setup Complexity -->
+    <g transform="translate(28,264)">
+      <text x="0" y="18" class="metric">Setup</text>
+
+      <rect x="200" y="2" width="240" height="32" class="chip" fill="#f0fdf4" />
+      <text x="220" y="24" class="cell">Simple - native API</text>
+      <circle cx="350" cy="18" class="dot green" />
+      <rect x="500" y="2" width="240" height="32" class="chip" fill="#fffbeb" />
+      <text x="520" y="24" class="cell">Moderate - provide worker file</text>
+      <circle cx="710" cy="18" class="dot yellow" />
+
+      <rect x="800" y="2" width="180" height="32" class="chip" fill="#fff7f7" />
+      <text x="820" y="24" class="cell">Simple - no special files</text>
+      <circle cx="970" cy="18" class="dot green" />
+    </g>
+
+    <!-- Row 4: Persistence -->
+    <g transform="translate(28,336)">
+      <text x="0" y="18" class="metric">Persistence</text>
+
+      <rect x="200" y="2" width="240" height="32" class="chip" fill="#fff" />
+      <text x="220" y="24" class="cell">No</text>
+      <circle cx="250" cy="18" class="dot red" />
+
+      <rect x="500" y="2" width="240" height="32" class="chip" fill="#fff" />
+      <text x="520" y="24" class="cell">No (in-memory worker lifetime)</text>
+      <circle cx="710" cy="18" class="dot red" />
+
+      <rect x="800" y="2" width="180" height="32" class="chip" fill="#ecfdf5" />
+      <text x="820" y="24" class="cell">Yes (persisted in storage)</text>
+      <circle cx="975" cy="18" class="dot green" />
+    </g>
+
+    <!-- Row 5: Throughput (messages/sec) -->
+    <g transform="translate(28,408)">
+      <text x="0" y="18" class="metric">Messages / sec</text>
+
+      <rect x="200" y="2" width="240" height="32" class="chip" fill="#eef2ff" />
+      <text x="220" y="24" class="cell">10k+ (high)</text>
+      <circle cx="300" cy="18" class="dot green" />
+
+      <rect x="500" y="2" width="240" height="32" class="chip" fill="#fff7ed" />
+      <text x="520" y="24" class="cell">~5k (moderate)</text>
+      <circle cx="620" cy="18" class="dot yellow" />
+
+      <rect x="800" y="2" width="180" height="32" class="chip" fill="#fff1f2" />
+      <text x="820" y="24" class="cell">100-500 (low)</text>
+      <circle cx="910" cy="18" class="dot red" />
+    </g>
+
+    <!-- Footer legend -->
+    <g transform="translate(28,485)">
+      <rect x="0" y="0" width="40" height="24" rx="6" class="green" />
+      <text x="52" y="18" class="small">Good / Recommended</text>
+
+      <rect x="240" y="0" width="40" height="24" rx="6" class="yellow" />
+      <text x="294" y="18" class="small">Moderate / Use with caution</text>
+
+      <rect x="640" y="0" width="40" height="24" rx="6" class="red" />
+      <text x="694" y="18" class="small">Limited / Avoid if possible</text>
+    </g>
+
+  </g>
+
+</svg>

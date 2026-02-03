@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="660" viewBox="0 0 1200 660" role="img" aria-labelledby="title desc">
+  <title id="title">Detailed message flow for PubSub MFE</title>
+  <desc id="desc">Diagram showing publish, message validation and wrapping, topic matching, source filtering, isolated delivery to handlers, and diagnostics reporting.</desc>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#334155" />
+    </marker>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#000" flood-opacity="0.12"/>
+    </filter>
+    <style>
+      .label { font-family: Inter, Roboto, Arial; fill: #0F172A; font-size: 13px }
+      .sub { font-family: Inter, Roboto, Arial; fill: #475569; font-size: 12px }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="#fff" />
+
+  <!-- Title -->
+  <text x="40" y="36" class="label" font-weight="700">Detailed message flow</text>
+  <text x="40" y="58" class="sub">Publish → validate and wrap → topic matching → source filtering → isolated handler delivery → diagnostics</text>
+
+  <!-- Publisher -->
+  <g transform="translate(40,110)">
+    <rect x="0" y="0" rx="10" ry="10" width="220" height="72" fill="#6366F1" filter="url(#shadow)" />
+    <text x="110" y="30" text-anchor="middle" font-family="Inter, Roboto, Arial" font-size="16" fill="#fff" font-weight="700">Publisher</text>
+    <text x="110" y="50" text-anchor="middle" font-family="Inter, Roboto, Arial" font-size="12" fill="#EEF2FF">bus.publish('cart.item.add', payload)</text>
+  </g>
+
+  <!-- Arrow to validation -->
+  <g stroke="#334155" stroke-width="3" fill="none">
+    <path d="M 260 146 L 340 146" marker-end="url(#arrow)" />
+  </g>
+  <text x="300" y="132" class="sub" text-anchor="middle">raw message</text>
+
+  <!-- Validation & Wrapping box -->
+  <g transform="translate(340,96)">
+    <rect x="0" y="0" rx="12" ry="12" width="260" height="120" fill="#0EA5A4" />
+    <text x="130" y="28" text-anchor="middle" font-family="Inter, Roboto, Arial" font-size="15" fill="#03241F" font-weight="800">Validation and Wrap</text>
+    <text x="130" y="52" text-anchor="middle" font-family="Inter, Roboto, Arial" font-size="12" fill="#043232">schema validation · add id/ts · meta</text>
+    <rect x="28" y="66" width="204" height="36" rx="8" ry="8" fill="#ffffff" opacity="0.06" />
+    <text x="130" y="90" text-anchor="middle" font-family="Inter, Roboto, Arial" font-size="12" fill="#022C22">{ id, topic, payload, ts, meta }</text>
+  </g>
+
+  <!-- Arrow to topic matcher -->
+  <g stroke="#334155" stroke-width="3" fill="none">
+    <path d="M 600 156 L 680 156" marker-end="url(#arrow)" />
+  </g>
+  <text x="635" y="140" class="sub" text-anchor="middle">envelope</text>
+
+  <!-- Topic Matching box -->
+  <g transform="translate(680,96)">
+    <rect x="0" y="0" rx="12" ry="12" width="280" height="120" fill="#F59E0B" />
+    <text x="150" y="28" text-anchor="middle" font-family="Inter, Roboto, Arial" font-size="15" fill="#4A2E04" font-weight="800">Topic Matcher</text>
+    <text x="150" y="52" text-anchor="middle" font-family="Inter, Roboto, Arial" font-size="12" fill="#4A2E04">pattern lookup · wildcard matching</text>
+    <g transform="translate(18,80)">
+      <text x="0" y="0" font-family="Inter, Roboto, Arial" font-size="12" fill="#4A2E04">subscriptions:</text>
+      <text x="10" y="18" font-family="Inter, Roboto, Arial" font-size="12" fill="#4A2E04">• cart.item.add</text>
+      <text x="110" y="18" font-family="Inter, Roboto, Arial" font-size="12" fill="#4A2E04">• cart.#</text>
+      <text x="180" y="18" font-family="Inter, Roboto, Arial" font-size="12" fill="#4A2E04">• cart.+.add</text>
+    </g>
+  </g>
+
+  <!-- Source Filtering box (left branch) -->
+  <g transform="translate(900,300)">
+    <rect x="0" y="0" rx="10" ry="10" width="200" height="120" fill="#60A5FA" />
+    <text x="100" y="28" text-anchor="middle" font-family="Inter, Roboto, Arial" font-size="14" fill="#062A4A" font-weight="700">Source Filter</text>
+    <text x="100" y="52" text-anchor="middle" font-family="Inter, Roboto, Arial" font-size="12" fill="#062A4A">include / exclude origins</text>
+    <text x="100" y="74" text-anchor="middle" font-family="Inter, Roboto, Arial" font-size="12" fill="#062A4A">prevent loops · trust</text>
+  </g>
+
+  <!-- Handlers area -->
+  <g transform="translate(400,300)">
+    <text x="0" y="0" class="label" font-weight="700">Handler Delivery (isolated)</text>
+
+    <!-- Handler 1 -->
+    <g transform="translate(0,22)">
+      <rect x="0" y="0" rx="8" ry="8" width="340" height="64" fill="#F97316" />
+      <text x="16" y="24" font-family="Inter, Roboto, Arial" font-size="14" fill="#FFF" font-weight="700">Subscriber: UI</text>
+      <text x="16" y="44" font-family="Inter, Roboto, Arial" font-size="12" fill="#FFF">updates cart UI (isolated try/catch)</text>
+      <rect x="268" y="18" width="56" height="28" rx="6" ry="6" fill="#fff" opacity="0.12" />
+      <text x="296" y="36" font-family="Inter, Roboto, Arial" font-size="10" fill="#fff" text-anchor="middle">ok</text>
+    </g>
+
+    <!-- Handler 2 (throws) -->
+    <g transform="translate(0,104)">
+      <rect x="0" y="0" rx="8" ry="8" width="340" height="64" fill="#FB7185" />
+      <text x="16" y="24" font-family="Inter, Roboto, Arial" font-size="14" fill="#fff" font-weight="700">Subscriber: Analytics</text>
+      <text x="16" y="44" font-family="Inter, Roboto, Arial" font-size="12" fill="#fff">processes event (error simulated)</text>
+      <rect x="268" y="18" width="56" height="28" rx="6" ry="6" fill="#fff" opacity="0.12" />
+      <text x="296" y="36" font-family="Inter, Roboto, Arial" font-size="10" fill="#fff" text-anchor="middle">fail</text>
+    </g>
+
+    <!-- Handler 3 -->
+    <g transform="translate(0,186)">
+      <rect x="0" y="0" rx="8" ry="8" width="340" height="64" fill="#10B981" />
+      <text x="16" y="24" font-family="Inter, Roboto, Arial" font-size="14" fill="#fff" font-weight="700">Subscriber: History</text>
+      <text x="16" y="44" font-family="Inter, Roboto, Arial" font-size="12" fill="#fff">persists to IndexedDB</text>
+      <rect x="268" y="18" width="56" height="28" rx="6" ry="6" fill="#fff" opacity="0.12" />
+      <text x="296" y="36" font-family="Inter, Roboto, Arial" font-size="10" fill="#fff" text-anchor="middle">ok</text>
+    </g>
+  </g>
+
+  <!-- Arrows from filter/matcher to handlers (curved) -->
+  <g stroke="#334155" stroke-width="3" fill="none" stroke-linecap="round">
+    <path d="M 900 340 C 850 340 820 240 720 320" marker-end="url(#arrow)" />
+    <path d="M 900 340 C 850 340 820 260 720 360" marker-end="url(#arrow)" />
+    <path d="M 900 340 C 850 340 820 340 720 440" marker-end="url(#arrow)" />
+  </g>
+
+  <!-- Diagnostics / Error reporting -->
+  <g transform="translate(780,500)">
+    <rect x="0" y="0" rx="10" ry="10" width="360" height="88" fill="#F3F4F6" stroke="#E5E7EB" />
+    <text x="18" y="24" font-family="Inter, Roboto, Arial" font-size="13" fill="#0F172A" font-weight="700">Diagnostics</text>
+    <text x="18" y="44" font-family="Inter, Roboto, Arial" font-size="12" fill="#475569">handler-error → logged and reported (Sentry, monitoring)</text>
+    <text x="18" y="62" font-family="Inter, Roboto, Arial" font-size="12" fill="#475569">errors do not block other handlers</text>
+  </g>
+
+  <text x="600" y="640" font-family="Inter, Roboto, Arial" font-size="12" fill="#475569" text-anchor="middle">Each handler runs in isolation (try/catch). Bus handles validation, pattern matching, source filters, batching and deduplication before delivery.</text>
+
+</svg>
