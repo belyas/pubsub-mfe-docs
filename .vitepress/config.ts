@@ -11,8 +11,9 @@ export default defineConfig({
       { text: 'Guide', link: '/guide/getting-started' },
       { text: 'API Reference', link: '/api/core' },
       { text: 'Examples', link: '/examples/basic' },
+      { text: 'Integrations', link: '/integrations/devtools' },
       { 
-        text: 'v0.7.0',
+        text: 'v0.8.0',
         items: [
           { text: 'Changelog', link: 'https://github.com/belyas/pubsub-mfe/blob/main/CHANGELOG.md' },
           { text: 'Contributing', link: 'https://github.com/belyas/pubsub-mfe/blob/main/CONTRIBUTING.md' }
@@ -80,6 +81,14 @@ export default defineConfig({
             { text: 'Iframe Bridge', link: '/examples/iframe' },
             { text: 'Schema Validation', link: '/examples/schema' },
             { text: 'Real-World Patterns', link: '/examples/patterns' }
+          ]
+        }
+      ],
+      '/integrations/': [
+        {
+          text: 'Integrations',
+          items: [
+            { text: 'DevTools Extension', link: '/integrations/devtools' }
           ]
         }
       ]
